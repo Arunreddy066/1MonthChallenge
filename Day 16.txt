@@ -1,0 +1,34 @@
+class Solution 
+{
+    public boolean isValid(String s) 
+    {
+        if(s.length()%2!=0)
+        {
+            return false;
+        }
+        HashMap<Character,Character>map=new HashMap<>();
+        map.put(')','(');
+        map.put(']','[');
+        map.put('}','{');
+        Stack<Character>st=new Stack<>();
+        for(Character c:s.toCharArray())
+        {
+            if(map.containsValue(c))
+            {
+                st.push(c);
+            }
+            else if(map.containsKey(c))
+            {
+                if(st.isEmpty() || st.pop()!=map.get(c))
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+        return st.isEmpty();
+    }
+}
