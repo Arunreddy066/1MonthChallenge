@@ -1,0 +1,21 @@
+class Solution 
+{
+    public TreeNode invertTree(TreeNode root) 
+    {
+        TreeNode temp=root;
+        helper(temp);
+        return root;
+    }
+    public void helper(TreeNode temp)
+    {
+        if(temp==null)
+        {
+            return ;
+        }
+        TreeNode temp1=temp.left;
+        temp.left=temp.right;
+        temp.right=temp1;
+        helper(temp.left);
+        helper(temp.right);
+    }
+}
